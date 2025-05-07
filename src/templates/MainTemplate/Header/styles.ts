@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface HeaderStyledProps {
@@ -37,8 +38,7 @@ export const MainContainer = styled.div<HeaderStyledProps>`
 
     a {
       align-items: center;
-      color: ${({ pathActive }) =>
-        pathActive ? 'var(--primary)' : 'var(--neutral-black)'};
+
       display: flex;
       font-size: 22px;
       gap: 8px;
@@ -85,4 +85,9 @@ export const MainContainer = styled.div<HeaderStyledProps>`
       display: none;
     }
   }
+`;
+
+export const NavItem = styled(Link)<HeaderStyledProps>`
+  color: ${({ pathActive }) =>
+    pathActive ? 'var(--primary)' : 'var(--neutral-black)'};
 `;

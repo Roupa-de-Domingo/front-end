@@ -11,6 +11,6 @@ export const ContentContainer = styled.div`
   flex: 1;
 
   @media (max-width: 1200px) {
-    padding: 32px 20px;
+    padding: 0px;
   }
 `;

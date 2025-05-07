@@ -13,8 +13,9 @@ export const MainContainer = styled.div`
   form {
     display: flex;
     flex-direction: column;
-    width: 100%;
     max-width: 550px;
+    padding: 0 16px;
+    width: 100%;
   }
 
   .logo-container {

@@ -1,9 +1,15 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+interface SwipeableDrawerMenuPropsStyledProps {
+  pathActive?: boolean;
+}
 
 export const NavigateMenuList = styled.div`
   align-items: center;
   background-color: var(--neutral-black);
-  border-radius: 10px 10px 0 0;
+  border-radius: 16px 16px 0 0;
+  border-top: 1px solid var(--neutral-150);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -11,7 +17,6 @@ export const NavigateMenuList = styled.div`
 
   a {
     align-items: center;
-    color: var(--neutral-150);
     display: flex;
     gap: 8px;
     text-decoration: none;
@@ -35,4 +40,9 @@ export const AccessBtnsContainer = styled.div`
     text-transform: uppercase;
     width: 250px;
   }
+`;
+
+export const NavItem = styled(Link)<SwipeableDrawerMenuPropsStyledProps>`
+  color: ${({ pathActive }) =>
+    pathActive ? 'var(--primary)' : 'var(--neutral-150)'};
 `;

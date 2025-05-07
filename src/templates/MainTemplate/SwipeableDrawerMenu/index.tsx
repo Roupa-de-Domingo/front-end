@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
 import LocalCafeIcon from '@mui/icons-material/LocalCafe';
-import { AccessBtnsContainer, NavigateMenuList } from './styles';
+import { AccessBtnsContainer, NavigateMenuList, NavItem } from './styles';
+import { jwtDecode } from 'jwt-decode';
 
 const drawerListData = [
   {
@@ -18,6 +19,20 @@ const drawerListData = [
     icon: <LocalCafeIcon />,
   },
 ];
+
+const isAuthenticated = () => {
+  const token = Cookies.get('token');
+
+  if (!token) return false;
+
+  try {
+    const decoded: any = jwtDecode(token);
+
+    return decoded.exp * 1000 > Date.now();
+  } catch (error) {
+    return false;
+  }
+};
 
 interface SwipeableDrawerMenuProps {
   openSwipeableDrawerMenu: boolean;
@@ -49,6 +64,10 @@ export const SwipeableDrawerMenu: React.FC<SwipeableDrawerMenuProps> = ({
     navigate(path);
   };
 
+  useEffect(() => {
+    console.log({ location });
+  }, []);
+
   return (
     <>
       <SwipeableDrawer
@@ -73,9 +92,13 @@ export const SwipeableDrawerMenu: React.FC<SwipeableDrawerMenuProps> = ({
           </AccessBtnsContainer>
           {drawerListData.map((item) => {
             return (
-              <Link to={item.path}>
+              <NavItem
+                to={item.path}
+                key={item.path}
+                pathActive={location.pathname === item.path}
+              >
                 {item.icon} {item.title}
-              </Link>
+              </NavItem>
             );
           })}
         </NavigateMenuList>

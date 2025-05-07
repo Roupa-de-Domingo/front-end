@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { MainContainer } from './styles';
+import React, { useState } from 'react';
+import { MainContainer, NavItem } from './styles';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import PersonIcon from '@mui/icons-material/Person';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { SwipeableDrawerMenu } from '../SwipeableDrawerMenu';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
 import LocalCafeIcon from '@mui/icons-material/LocalCafe';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
 
 const StyledMenuItem = (props: any) => (
   <MenuItem
@@ -42,6 +44,20 @@ const navListData = [
   },
 ];
 
+const isAuthenticated = () => {
+  const token = Cookies.get('token');
+
+  if (!token) return false;
+
+  try {
+    const decoded: any = jwtDecode(token);
+
+    return decoded.exp * 1000 > Date.now();
+  } catch (error) {
+    return false;
+  }
+};
+
 export const Header: React.FC = () => {
   const [openSwipeableDrawerMenu, setOpenSwipeableDrawerMenu] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -56,6 +72,7 @@ export const Header: React.FC = () => {
   };
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleOpenSwipeableDrawerMenu =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -71,15 +88,9 @@ export const Header: React.FC = () => {
       setOpenSwipeableDrawerMenu(open);
     };
 
-  const handleShoppingBag = () => {};
-
-  const handlePerson = () => {
-    console.log('teste');
+  const handleShoppingBag = () => {
+    navigate('/camisetas');
   };
-
-  useEffect(() => {
-    console.log({ location });
-  }, []);
 
   return (
     <MainContainer>
@@ -95,21 +106,21 @@ export const Header: React.FC = () => {
       <div className="logo">
         <p>ROUPA DE DOMINGO</p>
       </div>
-      <nav className="nav" onClick={handleShoppingBag}>
+      <nav className="nav">
         {navListData.map((item) => {
           return (
-            <Link
+            <NavItem
               key={item.path}
               to={item.path}
               pathActive={location.pathname === item.path}
             >
               {item.icon} {item.title}
-            </Link>
+            </NavItem>
           );
         })}
       </nav>
       <div className="options">
-        <i className="shopping-bag-icon">
+        <i className="shopping-bag-icon" onClick={handleShoppingBag}>
           <ShoppingBagIcon fontSize="large" />
         </i>
         <i className="person-icon" onClick={handleClickMenuAccount}>
@@ -137,13 +148,28 @@ export const Header: React.FC = () => {
           },
         }}
       >
-        <StyledMenuItem onClick={handleCloseMenuAccount}>
-          Minha conta
-        </StyledMenuItem>
-        <StyledMenuItem onClick={handleCloseMenuAccount}>
-          Meus pedidos
-        </StyledMenuItem>
-        <StyledMenuItem onClick={handleCloseMenuAccount}>Sair</StyledMenuItem>
+        {isAuthenticated() ? (
+          <>
+            <StyledMenuItem onClick={handleCloseMenuAccount}>
+              Minha conta
+            </StyledMenuItem>
+            <StyledMenuItem onClick={handleCloseMenuAccount}>
+              Meus pedidos
+            </StyledMenuItem>
+            <StyledMenuItem onClick={handleCloseMenuAccount}>
+              Sair
+            </StyledMenuItem>
+          </>
+        ) : (
+          <>
+            <StyledMenuItem onClick={handleCloseMenuAccount}>
+              Criar conta
+            </StyledMenuItem>
+            <StyledMenuItem onClick={handleCloseMenuAccount}>
+              Entrar
+            </StyledMenuItem>
+          </>
+        )}
       </Menu>
     </MainContainer>
   );

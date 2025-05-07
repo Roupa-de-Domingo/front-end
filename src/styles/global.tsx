@@ -58,7 +58,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   html {
-    background-color: var(--neutral-50);
+    background-color: var(--neutral-white);
   
 
     @media (max-width: 1080px) {
