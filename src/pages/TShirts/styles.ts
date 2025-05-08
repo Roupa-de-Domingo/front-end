@@ -1,10 +1,33 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 interface TShirtsStyledProps {
   sortActive?: boolean;
+  slideAnimationIn?: boolean;
 }
 
 export const MainContainer = styled.div``;
+
+const slideIn = keyframes`
+  from {
+    transform: translateX(100%);
+   
+  }
+  to {
+    transform: translateX(0%);
+    
+  }
+`;
+
+const slideOut = keyframes`
+  from {
+    transform: translateX(0%);
+    
+  }
+  to {
+    transform: translateX(100%);
+   
+  }
+`;
 
 export const Banner = styled.div`
   img {
@@ -75,8 +98,11 @@ export const FiltersContainer = styled.div`
   }
 `;
 
-export const FiltersContainerMobile = styled.div`
+export const FiltersContainerMobile = styled.div<TShirtsStyledProps>`
   display: none;
+  animation: ${({ slideAnimationIn }) =>
+      slideAnimationIn ? slideIn : slideOut}
+    300ms ease-in-out;
 
   @media (max-width: 900px) {
     background-color: white;
@@ -111,7 +137,13 @@ export const FiltersContainerMobile = styled.div`
   }
 `;
 
-export const SortsContainerMobile = styled(FiltersContainerMobile)`
+export const SortsContainerMobile = styled(
+  FiltersContainerMobile
+)<TShirtsStyledProps>`
+  animation: ${({ slideAnimationIn }) =>
+      slideAnimationIn ? slideIn : slideOut}
+    300ms ease-in-out;
+
   .content {
     display: flex;
     flex-direction: column;

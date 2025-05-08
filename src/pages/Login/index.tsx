@@ -49,8 +49,6 @@ export const Login: React.FC = () => {
 
         setLoginData(dados);
 
-        console.log({ dados });
-
         setLoginError(null);
         navigate('/clientes');
       } catch (error: unknown) {
@@ -62,7 +60,6 @@ export const Login: React.FC = () => {
         ) {
           setLoginError('Email ou senha incorretos');
         } else {
-          console.log({ error });
           setLoginError('Ocorreu um erro ao tentar fazer login');
         }
       }

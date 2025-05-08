@@ -84,7 +84,7 @@ export const Header: React.FC = () => {
       ) {
         return;
       }
-      console.log('teste');
+
       setOpenSwipeableDrawerMenu(open);
     };
 

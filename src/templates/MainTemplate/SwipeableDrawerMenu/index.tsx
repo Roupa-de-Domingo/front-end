@@ -64,9 +64,7 @@ export const SwipeableDrawerMenu: React.FC<SwipeableDrawerMenuProps> = ({
     navigate(path);
   };
 
-  useEffect(() => {
-    console.log({ location });
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>

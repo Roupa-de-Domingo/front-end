@@ -29,6 +29,8 @@ export const TShirts: React.FC = () => {
   const isMobile = useMedia('(max-width: 800px)');
   const [openFilterMobile, setOpenFilterMobile] = useState(false);
   const [openSortMobile, setOpenSortMobile] = useState(false);
+  const [showMainContent, setShowMainContent] = useState(true);
+  const [slideAnimationIn, setSlideAnimationIn] = useState<boolean>(false);
   const { sortFilterSelected, setSortFilterSelected } = useFiltersContext();
 
   const handleSetSort = (optionSelected: SortFilter) => {
@@ -38,22 +40,39 @@ export const TShirts: React.FC = () => {
 
     if (selected) {
       setSortFilterSelected(selected);
-      setOpenSortMobile((old) => !old);
+      setSlideAnimationIn(false);
+      setShowMainContent(true);
+      setTimeout(() => {
+        setOpenSortMobile(false);
+      }, 300);
     }
   };
 
-  const handleOpenFilterMobile = () => {
-    setOpenFilterMobile((old) => !old);
+  const handleOpenMenu = (
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
+    setSlideAnimationIn(true);
+    setOpen(true);
+
+    setTimeout(() => {
+      setShowMainContent(false);
+    }, 350);
   };
 
-  const handleOpenSortMobile = () => {
-    setOpenSortMobile((old) => !old);
+  const handleCloseMenu = (
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
+    setSlideAnimationIn(false);
+    setShowMainContent(true);
+    setTimeout(() => {
+      setOpen(false);
+    }, 300);
   };
 
   return (
     <MainTemplate>
       <MainContainer>
-        {!openFilterMobile && !openSortMobile && (
+        {showMainContent && (
           <>
             <Banner>
               {isMobile ? (
@@ -64,10 +83,16 @@ export const TShirts: React.FC = () => {
             </Banner>
 
             <FiltersBtnsContainer>
-              <button className="filter" onClick={handleOpenFilterMobile}>
+              <button
+                className="filter"
+                onClick={() => handleOpenMenu(setOpenFilterMobile)}
+              >
                 FILTRAR
               </button>
-              <button className="order-by" onClick={handleOpenSortMobile}>
+              <button
+                className="order-by"
+                onClick={() => handleOpenMenu(setOpenSortMobile)}
+              >
                 ORDENAR POR: <span>{sortFilterSelected.description}</span>
               </button>
             </FiltersBtnsContainer>
@@ -87,10 +112,30 @@ export const TShirts: React.FC = () => {
         )}
       </MainContainer>
 
-      {openSortMobile && (
-        <SortsContainerMobile>
+      {openFilterMobile && (
+        <FiltersContainerMobile slideAnimationIn={slideAnimationIn}>
           <div className="header">
-            <i className="close-icon" onClick={handleOpenSortMobile}>
+            <i
+              className="close-icon"
+              onClick={() => handleCloseMenu(setOpenFilterMobile)}
+            >
+              <CloseIcon />
+            </i>
+            <h3>FILTRAR POR</h3>
+          </div>
+          <div className="content">
+            <Filters />
+          </div>
+        </FiltersContainerMobile>
+      )}
+
+      {openSortMobile && (
+        <SortsContainerMobile slideAnimationIn={slideAnimationIn}>
+          <div className="header">
+            <i
+              className="close-icon"
+              onClick={() => handleCloseMenu(setOpenSortMobile)}
+            >
               <CloseIcon />
             </i>
             <h3>ORDENAR POR</h3>
@@ -119,20 +164,6 @@ export const TShirts: React.FC = () => {
             })}
           </div>
         </SortsContainerMobile>
-      )}
-
-      {openFilterMobile && (
-        <FiltersContainerMobile>
-          <div className="header">
-            <i className="close-icon" onClick={handleOpenFilterMobile}>
-              <CloseIcon />
-            </i>
-            <h3>FILTRAR POR</h3>
-          </div>
-          <div className="content">
-            <Filters />
-          </div>
-        </FiltersContainerMobile>
       )}
     </MainTemplate>
   );
