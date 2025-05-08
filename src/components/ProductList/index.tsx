@@ -18,7 +18,7 @@ export const ProductList: React.FC = () => {
     <MainContainer>
       <Products>
         {tshirts.map((item) => {
-          return <ProductItem />;
+          return <ProductItem product={item} />;
         })}
       </Products>
 
@@ -33,8 +33,8 @@ export const ProductList: React.FC = () => {
           siblingCount={0}
           sx={{
             '.Mui-selected': {
-              backgroundColor: '#000 !important', // Cor desejada
-              color: '#fff', // Cor do texto
+              backgroundColor: '#000 !important',
+              color: '#fff',
             },
           }}
         />
