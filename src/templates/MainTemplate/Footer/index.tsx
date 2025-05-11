@@ -10,14 +10,14 @@ export const Footer: React.FC = () => {
       <div className="questions">
         <h3>DÚVIDAS</h3>
         <Link to="/">Política de Privacidade e Segurança de Dados</Link>
-        <Link to="/">Termos e Condições de Uso da Roupa de Domingo</Link>
+        <Link to="/">Termos e Condições de Uso da VIAJA NIMIM NÃO</Link>
         <Link to="/">Ajuda / FAQ</Link>
         <Link to="/">Solicitar troca/devolução</Link>
         <Link to="/">Fale com a gente</Link>
       </div>
       <div className="about">
         <h3>SOBRE</h3>
-        <Link to="/">Sobre a Roupa de Domingo</Link>
+        <Link to="/">Sobre a VIAJA NIMIM NÃO</Link>
       </div>
       <div className="contact">
         <h3>CONTATO</h3>

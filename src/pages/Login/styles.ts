@@ -2,12 +2,8 @@ import styled from 'styled-components';
 
 export const MainContainer = styled.div`
   align-items: center;
-  background-blend-mode: overlay;
-  background-repeat: no-repeat, repeat;
-  background-size: cover, 50px 50px;
   display: flex;
   flex-direction: column;
-
   width: 100%;
 
   form {
@@ -21,9 +17,11 @@ export const MainContainer = styled.div`
   .logo-container {
     display: flex;
     justify-content: center;
+    margin-bottom: 32px;
     width: 100%;
 
     img {
+      border-radius: 50%;
       max-width: 270px;
     }
   }
@@ -35,19 +33,14 @@ export const MainContainer = styled.div`
   }
 
   @media (max-width: 1200px) {
-    align-items: center;
-    border-radius: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: center;
-    width: 100%;
+    padding: 32px 0;
 
     .logo-container {
       max-width: 350px;
 
       img {
-        max-width: 100%;
+        max-width: 80%;
+        padding: 0 16px;
       }
     }
   }

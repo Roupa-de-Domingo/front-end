@@ -11,6 +11,8 @@ import CheckroomIcon from '@mui/icons-material/Checkroom';
 import LocalCafeIcon from '@mui/icons-material/LocalCafe';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
+import logoOriginal from '../../../assets/images/logo-original.jpeg';
+import { useMainContext } from '../../../contexts/MainContext';
 
 const StyledMenuItem = (props: any) => (
   <MenuItem
@@ -73,6 +75,9 @@ export const Header: React.FC = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
+  const { dataBag } = useMainContext();
+
+  const totalQuantityBag = dataBag?.reduce((cur, acc) => cur + acc.quantity, 0);
 
   const toggleOpenSwipeableDrawerMenu =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -89,7 +94,7 @@ export const Header: React.FC = () => {
     };
 
   const handleShoppingBag = () => {
-    navigate('/camisetas');
+    navigate('/sacola');
   };
 
   return (
@@ -104,7 +109,7 @@ export const Header: React.FC = () => {
         />
       </div>{' '}
       <div className="logo">
-        <p>ROUPA DE DOMINGO</p>
+        <img src={logoOriginal} />
       </div>
       <nav className="nav">
         {navListData.map((item) => {
@@ -121,6 +126,9 @@ export const Header: React.FC = () => {
       </nav>
       <div className="options">
         <i className="shopping-bag-icon" onClick={handleShoppingBag}>
+          <div className="total-quantity-bag">
+            <p>{totalQuantityBag}</p>
+          </div>
           <ShoppingBagIcon fontSize="large" />
         </i>
         <i className="person-icon" onClick={handleClickMenuAccount}>

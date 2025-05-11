@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     --secondary-yellow-light: #F9E267; /* Pantone 2003 C */
 
 
-    --primary: #E27B30;
+    --primary: #D32F2F;
     --primary-dark: #9d4933;
     --secondary: #1f2a2b; 
     --secondary-light: #a9b0b3;
@@ -54,7 +54,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
   
   html {

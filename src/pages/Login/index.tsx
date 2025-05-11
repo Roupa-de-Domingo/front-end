@@ -8,7 +8,7 @@ import {
 import { FormHelperText, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import logoOriginal from '../../assets/images/logo-original.png';
+import logoOriginal from '../../assets/images/logo-original.jpeg';
 import { ButtonDefault } from '../../components/ButtonDefault';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../services/apis/routes/auth.service';

@@ -18,9 +18,9 @@ export const MainContainer = styled.div<HeaderStyledProps>`
   }
 
   .logo {
-    p {
-      font-size: 24px;
-      font-weight: 600;
+    img {
+      border-radius: 50%;
+      width: 80px;
     }
     width: fit-content;
   }
@@ -29,16 +29,9 @@ export const MainContainer = styled.div<HeaderStyledProps>`
     display: flex;
     justify-content: center;
     gap: 30px;
-    left: 0;
-    padding: 40px;
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    z-index: 0;
 
     a {
       align-items: center;
-
       display: flex;
       font-size: 22px;
       gap: 8px;
@@ -58,9 +51,35 @@ export const MainContainer = styled.div<HeaderStyledProps>`
     }
   }
 
+  .shopping-bag-icon {
+    position: relative;
+  }
+
+  .total-quantity-bag {
+    align-items: center;
+    background-color: var(--neutral-black);
+    border-radius: 50%;
+    display: flex;
+    height: 32px;
+    justify-content: center;
+    left: 16px;
+    position: absolute;
+    top: -14px;
+    width: 32px;
+
+    p {
+      color: var(--neutral-white);
+      text-align: center;
+    }
+  }
+
   @media (max-width: 1200px) {
     background-color: var(--neutral-black);
+    height: 84px;
     padding: 16px;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
 
     .menu-burger-container {
       display: flex;
@@ -71,9 +90,8 @@ export const MainContainer = styled.div<HeaderStyledProps>`
     }
 
     .logo {
-      p {
-        color: var(--neutral-150);
-        font-size: 20px;
+      img {
+        width: 45px;
       }
     }
 
@@ -83,6 +101,16 @@ export const MainContainer = styled.div<HeaderStyledProps>`
 
     .person-icon {
       display: none;
+    }
+
+    .total-quantity-bag {
+      background-color: var(--primary);
+
+      left: -16px;
+
+      p {
+        color: var(--neutral-black);
+      }
     }
   }
 `;

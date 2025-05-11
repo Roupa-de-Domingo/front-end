@@ -7,10 +7,11 @@ export const MainContainer = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  padding: 64px 32px;
   flex: 1;
+  padding: 32px;
 
   @media (max-width: 1200px) {
+    margin-top: 84px;
     padding: 0px;
   }
 `;

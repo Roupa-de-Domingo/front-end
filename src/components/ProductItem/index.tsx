@@ -1,12 +1,12 @@
 import React from 'react';
 import { MainContainer } from './styles';
-import camisetaTeste from '../../assets/images/camiseta.webp';
+import camisetaTeste from '../../assets/images/camiseta.png';
 import { formatRealCurrencyWithCipher } from '../../utils/formatters';
-import { ITShirts } from '../../interfaces/product';
+import { ITShirt } from '../../interfaces/product';
 import { useNavigate } from 'react-router-dom';
 
 interface ProductItem {
-  product: ITShirts;
+  product: ITShirt;
 }
 
 export const ProductItem: React.FC<ProductItem> = ({ product }) => {
