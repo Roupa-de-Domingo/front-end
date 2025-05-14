@@ -9,7 +9,7 @@ interface ButtonDefaultProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   showBorderRadius?: boolean;
   loading?: boolean;
   text: string;
-  width?: number | null;
+  width?: number | string | null;
   disabled?: boolean;
 }
 

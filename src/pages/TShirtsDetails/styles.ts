@@ -143,4 +143,9 @@ export const DeliveryContainer = styled.div`
       filter: brightness(0.7);
     }
   }
+
+  .error-msg {
+    height: 23px;
+    margin-top: 6px;
+  }
 `;

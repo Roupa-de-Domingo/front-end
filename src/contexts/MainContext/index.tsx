@@ -14,8 +14,9 @@ interface MainProviderType {
   setLoginData: React.Dispatch<React.SetStateAction<LoginData | undefined>>;
   getLoginData: () => LoginData | undefined;
 
-  totalValueBagPix: Number | undefined;
-  totalValueBagCreditCard: Number | undefined;
+  totalValueBagPix: number | undefined;
+  totalValueBagCreditCard: number | undefined;
+  totalProductsInBag: number | undefined;
 }
 const MainContext = createContext<MainProviderType | undefined>(undefined);
 
@@ -59,6 +60,11 @@ export const MainProvider: React.FC<{ children: React.ReactNode }> = ({
     0
   );
 
+  const totalProductsInBag = dataBag?.reduce(
+    (cur, acc) => cur + acc.quantity,
+    0
+  );
+
   useEffect(() => {
     getLocalStorageBag();
   }, []);
@@ -74,6 +80,7 @@ export const MainProvider: React.FC<{ children: React.ReactNode }> = ({
         getLoginData,
         totalValueBagPix,
         totalValueBagCreditCard,
+        totalProductsInBag,
       }}
     >
       {children}

@@ -4,7 +4,7 @@ interface ButtonStyledProps {
   backgroundColor: string;
   color: string;
   showBorderRadius?: boolean;
-  width?: number | null;
+  width?: number | string | null;
   disabled?: boolean;
 }
 
@@ -20,7 +20,7 @@ export const Button = styled.button<ButtonStyledProps>`
   color: ${({ color }) => `var(--${color})`};
   color: ${({ disabled }) => disabled && `var(--neutral-white)`};
 
-  font-size: 14px;
+  font-size: 16px;
   gap: 8px;
   padding: 16px 24px;
   justify-content: center;

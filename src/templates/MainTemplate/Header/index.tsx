@@ -75,9 +75,7 @@ export const Header: React.FC = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const { dataBag } = useMainContext();
-
-  const totalQuantityBag = dataBag?.reduce((cur, acc) => cur + acc.quantity, 0);
+  const { dataBag, totalProductsInBag } = useMainContext();
 
   const toggleOpenSwipeableDrawerMenu =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -127,7 +125,7 @@ export const Header: React.FC = () => {
       <div className="options">
         <i className="shopping-bag-icon" onClick={handleShoppingBag}>
           <div className="total-quantity-bag">
-            <p>{totalQuantityBag}</p>
+            <p>{totalProductsInBag}</p>
           </div>
           <ShoppingBagIcon fontSize="large" />
         </i>

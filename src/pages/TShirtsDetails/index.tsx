@@ -20,6 +20,8 @@ import { ISizeTShirt } from '../../interfaces/product';
 import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { useMainContext } from '../../contexts/MainContext';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 interface OpenSnackBarType {
   status: boolean;
@@ -29,7 +31,7 @@ interface OpenSnackBarType {
 
 const dataMock = {
   id: 1,
-  title: 'Camiseta Pop Corn',
+  title: 'Camiseta Como dizia meu avô cego: Nem tudo que eu toco eu como',
   pricePix: 75,
   priceCreditCard: 78,
   sizes: [
@@ -41,6 +43,8 @@ const dataMock = {
     { label: '3G', available: true },
     { label: '4G', available: true },
   ],
+  urlImage:
+    'https://cdn.dooca.store/292/products/bono7xq0jeccqm28rjsqb1jcntzdjvvlsgq9_120x120+fill_ffffff+crop_center.jpg',
 };
 
 export const TShirtsDetails: React.FC = () => {
@@ -60,6 +64,20 @@ export const TShirtsDetails: React.FC = () => {
   const handleSelectSize = (size: ISizeTShirt) => {
     setSizeSelected(size);
   };
+
+  const formik = useFormik({
+    initialValues: {
+      cep: '',
+    },
+    validationSchema: Yup.object({
+      cep: Yup.string()
+        .required('CEP é obrigatório')
+        .matches(/^\d{5}-\d{3}$/, 'CEP inválido. Use o formato 00000-000'),
+    }),
+    onSubmit: (values) => {
+      console.log('CEP enviado:', values.cep);
+    },
+  });
 
   const handleCepChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value.replace(/\D/g, '');
@@ -111,10 +129,11 @@ export const TShirtsDetails: React.FC = () => {
             priceCreditCard: dataMock.priceCreditCard,
             sizeSelected: sizeSelected,
             quantity: 1,
+            urlImage: dataMock.urlImage,
           },
         ];
         localStorage.setItem('bag', JSON.stringify(updatedBag));
-        setDataBag(bag);
+        setDataBag(updatedBag);
       }
     }
   };
@@ -173,17 +192,26 @@ export const TShirtsDetails: React.FC = () => {
             </BuyButton>
 
             <DeliveryContainer>
-              <p>Frete e prazo</p>
-              <div className="input-container">
-                <input
-                  type="text"
-                  placeholder="Insira seu CEP"
-                  value={cep}
-                  onChange={handleCepChange}
-                  maxLength={9}
-                />
-                <button>Calcular</button>
-              </div>
+              <form onSubmit={formik.handleSubmit}>
+                <p>Frete e prazo</p>
+                <div className="input-container">
+                  <input
+                    name="cep"
+                    type="text"
+                    placeholder="Insira seu CEP"
+                    value={formik.values.cep}
+                    onChange={handleCepChange}
+                    onBlur={formik.handleBlur}
+                    maxLength={9}
+                  />
+                  <button type="submit">Calcular</button>
+                </div>
+                <p className="error-msg">
+                  {formik.touched.cep && formik.errors.cep && (
+                    <span style={{ color: 'red' }}>{formik.errors.cep}</span>
+                  )}
+                </p>
+              </form>
             </DeliveryContainer>
           </InfoContent>
         </MainContent>
