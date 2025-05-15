@@ -113,6 +113,7 @@ export const Bag: React.FC = () => {
 
                       <div className="infos-container">
                         <p className="title">{product.title}</p>
+                        <p className="gender">{product.gender}</p>
                         <p className="ref">Ref: {product.id}</p>
                         <p className="size">
                           Tamanho: {product.sizeSelected.label}
@@ -184,6 +185,7 @@ export const Bag: React.FC = () => {
               text="Finalizar a compra"
               color="neutral-white"
               backgroundColor="primary"
+              onClick={() => navigate('/finalizar-pedido')}
             />
             <button
               className="continue-shopping-btn"

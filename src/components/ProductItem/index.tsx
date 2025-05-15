@@ -20,7 +20,9 @@ export const ProductItem: React.FC<ProductItem> = ({ product }) => {
     <MainContainer onClick={() => handleNavigateToTShirtsDetails(product.id)}>
       <img src={camisetaTeste} />
 
-      <p className="title">{product.title}</p>
+      <p className="title">
+        Camiseta {product.gender} <span>{product.title}</span>
+      </p>
       <p className="pix-price">
         <span>{formatRealCurrencyWithCipher(product.pricePix)}</span> no pix
       </p>

@@ -8,6 +8,7 @@ export interface ITShirt {
   title: String;
   pricePix: number;
   priceCreditCard: number;
+  gender: string;
   sizes?: ISizeTShirt[];
   urlImage: string;
 }
@@ -19,5 +20,6 @@ export interface ITShirtInBag {
   priceCreditCard: number;
   sizeSelected: ISizeTShirt;
   quantity: number;
+  gender: string;
   urlImage: string;
 }

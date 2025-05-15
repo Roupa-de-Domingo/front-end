@@ -1,7 +1,8 @@
 export const tshirts = [
   {
     id: 1,
-    title: 'Camiseta Of The King',
+    title: 'Of The King',
+    gender: 'masculina',
     pricePix: 75,
     priceCreditCard: 78,
     urlImage:
@@ -9,7 +10,8 @@ export const tshirts = [
   },
   {
     id: 2,
-    title: 'Camiseta Pop Corn',
+    title: 'Pop Corn',
+    gender: 'feminina',
     pricePix: 75,
     priceCreditCard: 78,
     urlImage:
@@ -17,7 +19,8 @@ export const tshirts = [
   },
   {
     id: 3,
-    title: 'Camiseta Você pra mim é problema seu',
+    title: 'Você pra mim é problema seu',
+    gender: 'masculina',
     pricePix: 75,
     priceCreditCard: 78,
     urlImage:
@@ -25,7 +28,8 @@ export const tshirts = [
   },
   {
     id: 4,
-    title: 'Camiseta fodaC',
+    title: 'fodaC',
+    gender: 'masculina',
     pricePix: 75,
     priceCreditCard: 78,
     urlImage:
@@ -33,7 +37,9 @@ export const tshirts = [
   },
   {
     id: 5,
-    title: 'Camiseta Sei lá',
+    title: 'Sei lá',
+    gender: 'feminina',
+
     pricePix: 75,
     priceCreditCard: 78,
     urlImage:
@@ -41,7 +47,9 @@ export const tshirts = [
   },
   {
     id: 6,
-    title: 'Camiseta WTF?',
+    title: 'WTF?',
+    gender: 'feminina',
+
     pricePix: 75,
     priceCreditCard: 78,
     urlImage:
@@ -49,7 +57,9 @@ export const tshirts = [
   },
   {
     id: 7,
-    title: 'Camiseta Edividado? Não! Viciado em viver!',
+    title: 'Edividado? Não! Viciado em viver!',
+    gender: 'feminina',
+
     pricePix: 75,
     priceCreditCard: 78,
     urlImage:
@@ -57,7 +67,9 @@ export const tshirts = [
   },
   {
     id: 8,
-    title: 'Camiseta Mais diabo que o esperto',
+    title: 'Mais diabo que o esperto',
+    gender: 'masculina',
+
     pricePix: 75,
     priceCreditCard: 78,
     urlImage:
@@ -65,7 +77,9 @@ export const tshirts = [
   },
   {
     id: 9,
-    title: 'Camiseta Leite com diabo filho',
+    title: 'Leite com diabo filho',
+    gender: 'masculina',
+
     pricePix: 75,
     priceCreditCard: 78,
     urlImage:
@@ -73,7 +87,7 @@ export const tshirts = [
   },
   {
     id: 10,
-    title: 'Camiseta Como dizia meu avô cego: Nem tudo que eu toco eu como',
+    title: 'Como dizia meu avô cego: Nem tudo que eu toco eu como',
     pricePix: 75,
     priceCreditCard: 78,
     urlImage:
@@ -81,7 +95,9 @@ export const tshirts = [
   },
   {
     id: 11,
-    title: 'Camiseta Whats your name? Tony VS Ezekiel',
+    title: 'Whats your name? Tony VS Ezekiel',
+    gender: 'masculina',
+
     pricePix: 75,
     priceCreditCard: 78,
     urlImage:
@@ -89,7 +105,9 @@ export const tshirts = [
   },
   {
     id: 12,
-    title: 'Camiseta Em terra de esqueleto toda fratura é exposta',
+    title: 'Em terra de esqueleto toda fratura é exposta',
+    gender: 'masculina',
+
     pricePix: 75,
     priceCreditCard: 78,
     urlImage:

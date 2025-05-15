@@ -3,6 +3,7 @@ import { Login } from './pages/Login';
 import { TShirts } from './pages/TShirts';
 import { TShirtsDetails } from './pages/TShirtsDetails';
 import { Bag } from './pages/Bag';
+import { FinalizeOrder } from './pages/FinalizeOrder';
 
 export const AppRoutes = () => {
   return (
@@ -13,6 +14,7 @@ export const AppRoutes = () => {
         <Route path="/camisetas" element={<TShirts />} />
         <Route path="/sacola" element={<Bag />} />
         <Route path="/detalhes-camiseta/:id" element={<TShirtsDetails />} />
+        <Route path="/finalizar-pedido" element={<FinalizeOrder />} />
         <Route path="*" element={<Navigate to="/camisetas" replace />} />
       </Routes>
     </>

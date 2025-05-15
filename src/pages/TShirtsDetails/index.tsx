@@ -31,7 +31,8 @@ interface OpenSnackBarType {
 
 const dataMock = {
   id: 1,
-  title: 'Camiseta Como dizia meu avô cego: Nem tudo que eu toco eu como',
+  title: 'Como dizia meu avô cego: Nem tudo que eu toco eu como',
+  gender: 'masculina',
   pricePix: 75,
   priceCreditCard: 78,
   sizes: [
@@ -130,6 +131,7 @@ export const TShirtsDetails: React.FC = () => {
             sizeSelected: sizeSelected,
             quantity: 1,
             urlImage: dataMock.urlImage,
+            gender: dataMock.gender,
           },
         ];
         localStorage.setItem('bag', JSON.stringify(updatedBag));
@@ -147,7 +149,9 @@ export const TShirtsDetails: React.FC = () => {
           </ImgProductContainer>
 
           <InfoContent>
-            <Title>{dataMock.title}</Title>
+            <Title>
+              Camiseta {dataMock.gender} <span>{dataMock.title}</span>
+            </Title>
 
             <Phrase>
               # EVITE TROCA, CONFIRA A NOSSA TABELA DE MEDIDAS ANTES DE ESCOLHER

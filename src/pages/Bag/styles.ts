@@ -80,11 +80,12 @@ export const ProductItem = styled.div`
 
 export const ProductItemLeftContent = styled.div`
   flex: 1;
-  align-items: center;
+
   display: flex;
   gap: 16px;
 
   img {
+    align-self: flex-start;
     border: 1px solid var(--neutral-300);
     border-radius: 4px;
     width: 80px;
@@ -100,8 +101,14 @@ export const ProductItemLeftContent = styled.div`
     font-weight: 500;
   }
 
+  .gender {
+    color: var(--neutral-400);
+    font-size: 14px;
+  }
+
   .ref {
     color: var(--neutral-400);
+    font-size: 14px;
   }
 
   .size {

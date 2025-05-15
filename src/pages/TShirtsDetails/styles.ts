@@ -50,7 +50,11 @@ export const InfoContent = styled.div`
   }
 `;
 
-export const Title = styled.h2``;
+export const Title = styled.h2`
+  span {
+    font-weight: 500;
+  }
+`;
 
 export const Phrase = styled.p``;
 
