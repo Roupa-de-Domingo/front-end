@@ -109,7 +109,7 @@ export const MainContainer = styled.div<HeaderStyledProps>`
       left: -16px;
 
       p {
-        color: var(--neutral-black);
+        color: var(--neutral-white);
       }
     }
   }

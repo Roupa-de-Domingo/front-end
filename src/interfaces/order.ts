@@ -1,23 +1,40 @@
-export interface OrderItem {
-  numseq: number;
-  codprod: number;
-  pvenda: number;
-  qt: number;
-  qtFaturada: number;
-  observacaoPc: string;
-  corte: boolean;
+export interface IAccordionExpanded {
+  deliver: boolean;
+  freight: boolean;
+  payment: boolean;
 }
 
-export interface OrderResponse {
-  numped: number;
-  numpedrca: number;
-  observacao: string;
-  codusur: number;
-  cgccli: string;
-  dtHoraPedido: string;
-  dtInclusao: string;
-  posicaoAtual: string;
-  dtAlteracao: string;
-  chavenfe: string;
-  itens: OrderItem[];
+export interface IdeliverAddress {
+  cep: string;
+  city: string;
+  complement: string;
+  neighborhood: string;
+  number: string;
+  street: string;
+  uf: string;
+}
+
+export interface IFreight {
+  id: number;
+  title: string;
+  deliveryTime: number;
+  value: number;
+}
+
+export interface ICreditCard {
+  numberCard: string;
+  nameCard: string;
+  expiration: string;
+  cvv: string;
+  parcel: number;
+}
+
+export interface IParcel {
+  quantityParcela: number;
+  valueParcela: number;
+}
+
+export interface IPaymentSelected {
+  type: 'creditCard' | 'billet' | 'pix';
+  value: number;
 }

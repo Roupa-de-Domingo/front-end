@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { LoginData } from '../../interfaces/user';
 import Cookies from 'js-cookie';
 import { ITShirtInBag } from '../../interfaces/product';
+import { IParcel } from '../../interfaces/order';
 
 interface MainProviderType {
   dataBag: ITShirtInBag[] | undefined | null;
@@ -17,6 +18,8 @@ interface MainProviderType {
   totalValueBagPix: number | undefined;
   totalValueBagCreditCard: number | undefined;
   totalProductsInBag: number | undefined;
+
+  parcelCreditCardQuantity: (totalValue: number) => IParcel[];
 }
 const MainContext = createContext<MainProviderType | undefined>(undefined);
 
@@ -60,6 +63,28 @@ export const MainProvider: React.FC<{ children: React.ReactNode }> = ({
     0
   );
 
+  const parcelCreditCardQuantity = (totalValue: number): IParcel[] => {
+    const maxInstallments = 10;
+    const minInstallmentValue = 35;
+
+    const result: IParcel[] = [];
+
+    for (let i = 1; i <= maxInstallments; i++) {
+      const value = totalValue / i;
+
+      if (value >= minInstallmentValue || i === 1) {
+        result.push({
+          quantityParcela: i,
+          valueParcela: parseFloat(value.toFixed(2)),
+        });
+      } else {
+        break;
+      }
+    }
+
+    return result;
+  };
+
   const totalProductsInBag = dataBag?.reduce(
     (cur, acc) => cur + acc.quantity,
     0
@@ -81,6 +106,7 @@ export const MainProvider: React.FC<{ children: React.ReactNode }> = ({
         totalValueBagPix,
         totalValueBagCreditCard,
         totalProductsInBag,
+        parcelCreditCardQuantity,
       }}
     >
       {children}

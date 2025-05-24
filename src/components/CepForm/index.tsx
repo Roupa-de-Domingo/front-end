@@ -4,20 +4,29 @@ import * as Yup from 'yup';
 import { TextField } from '@mui/material';
 import { Form, MainContainer } from './styles';
 import { ButtonDefault } from '../ButtonDefault';
+import { useFinalizeOrderContext } from '../../contexts/FinalizeOrderContext';
+import { IdeliverAddress } from '../../interfaces/order';
 
 export const CepForm = () => {
   const [address, setAddress] = useState(null);
   const [error, setError] = useState('');
 
+  const {
+    accordionExpanded,
+    setAccordionExpanded,
+    setdeliverAddress,
+    deliverAddress,
+  } = useFinalizeOrderContext();
+
   const formik = useFormik({
     initialValues: {
-      cep: '',
-      city: '',
-      uf: '',
-      street: '',
-      number: '',
-      complement: '',
-      neighborhood: '',
+      cep: deliverAddress?.cep || '',
+      city: deliverAddress?.city || '',
+      uf: deliverAddress?.uf || '',
+      street: deliverAddress?.street || '',
+      number: deliverAddress?.number || '',
+      complement: deliverAddress?.complement || '',
+      neighborhood: deliverAddress?.neighborhood || '',
     },
     validationSchema: Yup.object({
       cep: Yup.string()
@@ -31,7 +40,12 @@ export const CepForm = () => {
       uf: Yup.string().required('UF é obrigatório'),
     }),
     onSubmit: async (values) => {
-      console.log({ formValues: values });
+      setdeliverAddress(values);
+      setAccordionExpanded({
+        ...accordionExpanded,
+        deliver: false,
+        freight: true,
+      });
     },
   });
 
@@ -269,7 +283,7 @@ export const CepForm = () => {
         </div>
 
         <ButtonDefault
-          text="Continuar"
+          text="Salvar e continuar"
           color="neutral-white"
           backgroundColor="primary"
           width={'100%'}

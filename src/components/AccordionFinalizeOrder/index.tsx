@@ -11,7 +11,10 @@ import {
 
 interface IAccordionFinalizeOrderProps {
   accordionExpanded: boolean;
-  setAccordionExpanded: React.Dispatch<React.SetStateAction<boolean>>;
+  handleChangeAccordion: (
+    event: React.SyntheticEvent,
+    expanded: boolean
+  ) => void;
   accordionSummaryIcon: React.ReactNode;
   accordionSummaryTitle: string;
   accordionSummaryContent?: React.ReactNode;
@@ -20,7 +23,7 @@ interface IAccordionFinalizeOrderProps {
 
 export const AccordionFinalizeOrder: React.FC<IAccordionFinalizeOrderProps> = ({
   accordionExpanded,
-  setAccordionExpanded,
+  handleChangeAccordion,
   accordionSummaryIcon,
   accordionSummaryTitle,
   accordionSummaryContent,
@@ -29,20 +32,28 @@ export const AccordionFinalizeOrder: React.FC<IAccordionFinalizeOrderProps> = ({
   return (
     <Accordion
       expanded={accordionExpanded}
-      onChange={() => setAccordionExpanded((prev) => !prev)}
+      onChange={handleChangeAccordion}
+      sx={{
+        border: '1px solid #D0D5DD',
+        boxShadow: 'none',
+      }}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
+        // expandIcon={
+        //   <Box sx={{ alignSelf: 'flex-start', mt: 1 }}>
+        //     <ExpandMoreIcon />
+        //   </Box>
+        // }
         aria-controls="panel1-content"
         id="panel1-header"
       >
-        <AccordionSummaryHeader>
-          <i>{accordionSummaryIcon}</i>
-          <Title>{accordionSummaryTitle}</Title>
-        </AccordionSummaryHeader>
-
         <AccordionSummaryContentContainer>
-          {accordionSummaryContent}
+          <AccordionSummaryHeader>
+            <i>{accordionSummaryIcon}</i>
+            <Title>{accordionSummaryTitle}</Title>
+          </AccordionSummaryHeader>
+          {!accordionExpanded && <>{accordionSummaryContent}</>}
         </AccordionSummaryContentContainer>
       </AccordionSummary>
       <AccordionDetails>{children}</AccordionDetails>

@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
 
     --primary: #D32F2F;
     --primary-dark: #9d4933;
-    --secondary: #1f2a2b; 
+    --secondary: #EFE6DF; 
     --secondary-light: #a9b0b3;
 
 
@@ -21,6 +21,10 @@ export const GlobalStyle = createGlobalStyle`
     --status-success-500: #12B76A;
     --status-success-950: #05603A;
 
+    --status-warning-100: #FFF7E0;
+    --status-warning-200: #FFE8B2;  
+    --status-warning-300: #FFCF66;
+    --status-warning-400: #FDB93C;
     --status-warning-500: #FDB022;
 
     --status-error-100: #FEE4E2;

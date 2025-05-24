@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 
 import { MainProvider } from '../MainContext';
 import { FiltersProvider } from '../FiltersContext';
+import { FinalizeOrderContextProvider } from '../FinalizeOrderContext';
 
 interface AppProvidersProps {
   children: ReactNode;
@@ -10,7 +11,9 @@ interface AppProvidersProps {
 export const AppProviders: React.FC<AppProvidersProps> = ({ children }) => {
   return (
     <MainProvider>
-      <FiltersProvider>{children}</FiltersProvider>
+      <FiltersProvider>
+        <FinalizeOrderContextProvider>{children}</FinalizeOrderContextProvider>
+      </FiltersProvider>
     </MainProvider>
   );
 };
