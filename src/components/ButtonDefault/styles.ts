@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface ButtonStyledProps {
   backgroundColor: string;
@@ -12,7 +12,7 @@ export const Button = styled.button<ButtonStyledProps>`
   align-items: center;
   display: flex;
   background-color: ${({ backgroundColor }) => `var(--${backgroundColor})`};
-  background-color: ${({ disabled }) => disabled && `var(--neutral-500)`};
+  background-color: ${({ disabled }) => disabled && `var(--neutral-300)`};
   border: ${({ backgroundColor, color }) =>
     backgroundColor === 'transparent' ? `2px solid var(--${color})` : 'none'};
   border-radius: ${({ showBorderRadius }) =>
@@ -26,9 +26,13 @@ export const Button = styled.button<ButtonStyledProps>`
   justify-content: center;
   width: ${({ width }) => (width ? `${width}px` : '100%')};
 
-  transition: filter 0.2s;
-  &:hover {
-    cursor: pointer;
-    filter: brightness(0.7);
-  }
+  ${({ disabled }) =>
+    !disabled &&
+    css`
+      transition: filter 0.2s;
+      &:hover {
+        cursor: pointer;
+        filter: brightness(0.7);
+      }
+    `}
 `;

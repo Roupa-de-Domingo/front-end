@@ -14,11 +14,20 @@ import { useMainContext } from '../../contexts/MainContext';
 import { formatRealCurrencyWithCipher } from '../../utils/formatters';
 
 export const CreditCardForm: React.FC = () => {
-  const { accordionExpanded, setAccordionExpanded, setCreditCardData } =
-    useFinalizeOrderContext();
+  const {
+    accordionExpanded,
+    setAccordionExpanded,
+    setCreditCardData,
+    deliverAddress,
+    freightSelected,
+  } = useFinalizeOrderContext();
 
   const { parcelCreditCardQuantity, totalValueBagCreditCard } =
     useMainContext();
+
+  const isDeliverAddressComplete = Object.entries(deliverAddress)
+    .filter(([key]) => key !== 'complement')
+    .every(([, value]) => value.trim() !== '');
 
   const expirationSchema = Yup.string()
     .required('Data de validade é obrigatória')
@@ -209,6 +218,7 @@ export const CreditCardForm: React.FC = () => {
           backgroundColor="primary"
           width={'100%'}
           type="submit"
+          disabled={!isDeliverAddressComplete || !freightSelected.title}
         />
       </Form>
     </MainContainer>
